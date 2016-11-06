@@ -57,7 +57,7 @@ welcome = """
     text-shadow: #fff 0px 0px 25px;
   }
   a {
-    color: #0188cc;
+    color: #000000;
   }
   .textColumn, .linksColumn {
     padding: 2em;
@@ -71,7 +71,7 @@ welcome = """
 
     text-align: right;
     padding-top: 11em;
-    background-color: #24B8EB;
+    background-color: #24eb52;
   }
   .textColumn p {
     width: 75%;
@@ -107,17 +107,19 @@ welcome = """
 </head>
 <body id="sample">
   <div class="textColumn">
-    <h1>Congratulations!</h1>
-    <p>Your Docker Container is NOT running in Elastic Beanstalk yet.</p>
+    <h1>Kudos!</h1>
+    <h2>Your first containerized application is up...</h2>
+    <h3>...on your machine.</h3> 
   </div>
   
   <div class="linksColumn"> 
+    <h2> How about AWS Elastic Beanstalk?</h2>
     <h2>Video Tutorials</h2>
     <ul>
     <li>YouTube: <a href="https://www.youtube.com/watch?v=lBu7Ov3Rt-M&feature=youtu.be">Run a Docker Container from the Docker Registry</a></li>
     <li>YouTube: <a href="https://www.youtube.com/watch?v=pLw6MLqwmew&feature=youtu.be">Use Private Docker Repositories</a></li>
     </ul>
-    <h2>Sample Apps</h2>et
+    <h2>Sample Apps</h2>
     <ul>
     <li>GitHub: <a href="https://github.com/awslabs/eb-demo-php-simple-app/tree/docker-apache">PHP and Amazon RDS</a></li>
     <li>GitHub: <a href="https://github.com/awslabs/eb-py-flask-signup/tree/docker">Python, DynamoDB, and SNS</a></li>
