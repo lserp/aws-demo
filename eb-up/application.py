@@ -112,7 +112,7 @@ welcome = """
   </div>
   
   <div class="linksColumn"> 
-      <h1><iframe src="//giphy.com/embed/l0HlyqsKtWMIs1dU4" width="480" height="263" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></h1>
+      <h1><iframe src="//giphy.com/embed/3o7TKG7mFE5HDQvC36" width="480" height="250" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></h1>
   </div>
 </body>
 </html>
