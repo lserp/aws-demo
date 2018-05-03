@@ -36,36 +36,36 @@ Resources:
     Properties:
       AvailabilityZone:     String
       CidrBlock:            !Ref Private1
-    Tags:
-    - Key:                 Why
-    Value:                 ELBDemo
+      Tags:
+      - Key:                Why
+      Value:                ELBDemo
 
   ELBPrivate2:
     Type:                   "AWS::EC2::Subnet"
     Properties:
       AvailabilityZone:     String
       CidrBlock:            !Ref Private2
-     Tags:
-     - Key:                 Why
-     Value:                 ELBDemo
+      Tags:
+      - Key:                Why
+      Value:                ELBDemo
 
   ELBPublic1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
       AvailabilityZone:     String
       CidrBlock:            !Ref Public1
-     Tags:
-     - Key:                 Why
-     Value:                 ELBDemo
+      Tags:
+      - Key:                Why
+      Value:                ELBDemo
 
   ELBPublic2:
     Type:                   "AWS::EC2::Subnet"
     Properties:
       AvailabilityZone:     String
       CidrBlock:            !Ref Public2
-     Tags:
-     - Key:                 Why
-     Value:                 ELBDemo
+      Tags:
+      - Key:                Why
+      Value:                ELBDemo
 
   NLB:
     Type:                   "AWS::ElasticLoadBalancingV2::LoadBalancer"
