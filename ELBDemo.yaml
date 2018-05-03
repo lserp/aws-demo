@@ -36,9 +36,9 @@ Resources:
     Properties:
       AvailabilityZone:     String
       CidrBlock:            !Ref Private1
-     Tags:
-     - Key:                 Why
-       Value:               ELBDemo
+    Tags:
+    - Key:                 Why
+    Value:                 ELBDemo
 
   ELBPrivate2:
     Type:                   "AWS::EC2::Subnet"
@@ -54,7 +54,7 @@ Resources:
     Properties:
       AvailabilityZone:     String
       CidrBlock:            !Ref Public1
-     Tags:                  
+     Tags:
      - Key:                 Why
      Value:                 ELBDemo
 
