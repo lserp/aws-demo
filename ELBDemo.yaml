@@ -32,10 +32,7 @@ Resources:
   ELBPrivate1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:     !Select
-        - 0
-        - !GetAZs
-          Ref:              'AWS::Region'
+      AvailabilityZone:     "eu-west-1a"
       CidrBlock:            !Ref Private1
       Tags:
       - Key:                Why
@@ -46,9 +43,8 @@ Resources:
     Type:                   "AWS::EC2::Subnet"
     Properties:
       AvailabilityZone:     !Select
-        - 0
-        - !GetAZs
-          Ref:              'AWS::Region'
+        - 1
+        - Fn::GetAZs: Ref:  'AWS::Region'
       CidrBlock:            !Ref Private2
       Tags:
       - Key:                Why
@@ -60,8 +56,7 @@ Resources:
     Properties:
       AvailabilityZone:     !Select
         - 0
-        - !GetAZs
-          Ref:              'AWS::Region'
+        - Fn::GetAZs: Ref:  'AWS::Region'
       CidrBlock:            !Ref Public1
       Tags:
       - Key:                Why
@@ -72,15 +67,14 @@ Resources:
     Type:                   "AWS::EC2::Subnet"
     Properties:
       AvailabilityZone:     !Select
-        - 0
-        - !GetAZs
-          Ref:              'AWS::Region'
+        - 1
+        - Fn::GetAZs: Ref:  'AWS::Region'
       CidrBlock:            !Ref Public2
       Tags:
       - Key:                Why
       Value:                ELBDemo
       VpcId:                !Ref ELBVPC
-      
+
   NLB:
     Type:                   "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
