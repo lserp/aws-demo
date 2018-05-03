@@ -1,4 +1,4 @@
-AWSTemplateVersion:         "2010-09-09"
+AWSTemplateFormat`Version:  "2010-09-09"
 
 Parameters:
   CIDR:
@@ -16,10 +16,7 @@ Parameters:
   Public2:
     Type:                   string
     Default:                10.0.40.0/24
-
-
-
-
+    
 Resources:
 
   ELBVPC:
