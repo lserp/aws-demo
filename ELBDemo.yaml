@@ -40,6 +40,7 @@ Resources:
       Tags:
       - Key:                Why
       Value:                ELBDemo
+      VpcId:                !Ref ELBVPC
 
   ELBPrivate2:
     Type:                   "AWS::EC2::Subnet"
@@ -52,6 +53,7 @@ Resources:
       Tags:
       - Key:                Why
       Value:                ELBDemo
+      VpcId:                !Ref ELBVPC
 
   ELBPublic1:
     Type:                   "AWS::EC2::Subnet"
@@ -64,6 +66,7 @@ Resources:
       Tags:
       - Key:                Why
       Value:                ELBDemo
+      VpcId:                !Ref ELBVPC
 
   ELBPublic2:
     Type:                   "AWS::EC2::Subnet"
@@ -76,7 +79,8 @@ Resources:
       Tags:
       - Key:                Why
       Value:                ELBDemo
-
+      VpcId:                !Ref ELBVPC
+      
   NLB:
     Type:                   "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
