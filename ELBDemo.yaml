@@ -32,11 +32,13 @@ Resources:
   ELBPrivate1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:     "eu-west-1a"
+      AvailabilityZone:     !Select
+        - 0
+        - Fn::GetAZs:       !Ref 'AWS::Region'
       CidrBlock:            !Ref Private1
       Tags:
       - Key:                Why
-      Value:                ELBDemo
+        Value:              ELBDemo
       VpcId:                !Ref ELBVPC
 
   ELBPrivate2:
@@ -48,7 +50,7 @@ Resources:
       CidrBlock:            !Ref Private2
       Tags:
       - Key:                Why
-      Value:                ELBDemo
+        Value:              ELBDemo
       VpcId:                !Ref ELBVPC
 
   ELBPublic1:
@@ -60,7 +62,7 @@ Resources:
       CidrBlock:            !Ref Public1
       Tags:
       - Key:                Why
-      Value:                ELBDemo
+        Value:              ELBDemo
       VpcId:                !Ref ELBVPC
 
   ELBPublic2:
@@ -72,7 +74,7 @@ Resources:
       CidrBlock:            !Ref Public2
       Tags:
       - Key:                Why
-      Value:                ELBDemo
+        Value:              ELBDemo
       VpcId:                !Ref ELBVPC
 
   NLB:
