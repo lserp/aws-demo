@@ -1,4 +1,4 @@
-AWSTemplateVersion:         2010-09-09
+AWSTemplateVersion:         "2010-09-09"
 
 Parameters:
   CIDR:
