@@ -44,7 +44,7 @@ Resources:
     Properties:
       AvailabilityZone:     !Select
         - 1
-        - Fn::GetAZs: Ref:  'AWS::Region'
+        - Fn::GetAZs:       !Ref 'AWS::Region'
       CidrBlock:            !Ref Private2
       Tags:
       - Key:                Why
