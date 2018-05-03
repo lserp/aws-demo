@@ -28,10 +28,14 @@ Resources:
       Tags:
         - Key:              Why
           Value:            ELBDemo
+
   ELBPrivate1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:     String
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Private1
       Tags:
       - Key:                Why
@@ -40,7 +44,10 @@ Resources:
   ELBPrivate2:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:     String
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Private2
       Tags:
       - Key:                Why
@@ -49,7 +56,10 @@ Resources:
   ELBPublic1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:     String
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Public1
       Tags:
       - Key:                Why
@@ -58,7 +68,10 @@ Resources:
   ELBPublic2:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:     String
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Public2
       Tags:
       - Key:                Why
@@ -75,6 +88,7 @@ Resources:
         - Key:              Why
           Value:            ELBDemo
       Type:                 network
+
   ALB:
     Type:                   "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
@@ -115,8 +129,36 @@ Resources:
         - Key:              Why
           Value:            ELBDemo
 
-  # WebSG:
-  #   Type:                 AWS::EC2::SecurityGroup
+  WebSG:
+    Type:                   AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription:     SG for Web Traffic
+      SecurityGroupIngress:
+        - IpProtocol:       tcp
+          FromPort:         80
+          ToPort:           80
+          CidrIp:           0.0.0.0/0
+      Tags:
+        - Key:              Why
+          Value:            ELBDemo
+      VpcId:                !Ref ELBVPC
 
-  # RouteTable
-  #
+  SubnetRTAssociation1:
+    Type:                   AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:         !Ref PrivateRT
+      SubnetId:             !Ref Private1
+
+  SubnetRTAssociation2:
+    Type:                   AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:         !Ref PrivateRT
+      SubnetId:             !Ref Private2
+
+  PrivateRT:
+    Type:                   AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key:              Why
+          Value:            ELBDemo
+      VpcId:                !Ref ELBVPC
