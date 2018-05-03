@@ -2,19 +2,19 @@ AWSTemplateFormatVersion:   "2010-09-09"
 
 Parameters:
   CIDR:
-    Type:                   string
+    Type:                   String
     Default:                10.0.0.0/16
   Private1:
-    Type:                   string
+    Type:                   String
     Default:                10.0.10.0/24
   Private2:
-    Type:                   string
+    Type:                   String
     Default:                10.0.20.0/24
   Public1:
-    Type:                   string
+    Type:                   String
     Default:                10.0.30.0/24
   Public2:
-    Type:                   string
+    Type:                   String
     Default:                10.0.40.0/24
 
 Resources:
