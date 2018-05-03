@@ -32,8 +32,7 @@ Resources:
   ELBPrivate1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:
-        Fn::Select:
+      AvailabilityZone:     !Select
           - 0
           - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Private1
@@ -44,8 +43,7 @@ Resources:
   ELBPrivate2:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:
-        Fn::Select:
+      AvailabilityZone:     !Select
           - 1
           - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Private2
@@ -56,8 +54,7 @@ Resources:
   ELBPublic1:
     Type:                   "AWS::EC2::Subnet"
     Properties:
-      AvailabilityZone:
-        Fn::Select:
+      AvailabilityZone:     !Select
           - 0
           - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Public1
@@ -69,8 +66,7 @@ Resources:
     Type:                   "AWS::EC2::Subnet"
     Properties:
       AvailabilityZone:
-        Fn::Select:
-          - 1
+        AvailabilityZone:   !Select
           - Fn::GetAZs:     !Ref 'AWS::Region'
       CidrBlock:            !Ref Public2
       Tags:
