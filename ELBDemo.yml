@@ -1,0 +1,125 @@
+AWSTemplateVersion: 2010-09-09
+
+Parameters:
+  CIDR:
+    Type: string
+    Default: 10.0.0.0/16
+  Private1:
+    Type: string
+    Default: 10.0.10.0/24
+  Private2:
+    Type: string
+    Default: 10.0.20.0/24
+  Public1:
+    Type: string
+    Default: 10.0.30.0/24
+  Public2:
+    Type: string
+    Default: 10.0.40.0/24
+
+
+
+
+Resources: 
+
+  ELBVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref CIDR
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Why
+          Value: ELBDemo 
+  ELBPrivate1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: String
+      CidrBlock: !Ref Private1
+     Tags: 
+     - Key: Why
+     Value: ELBDemo 
+
+  ELBPrivate2:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: String
+      CidrBlock: !Ref Private2
+     Tags: 
+     - Key: Why
+     Value: ELBDemo 
+
+  ELBPublic1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: String
+      CidrBlock: !Ref Public1
+     Tags: 
+     - Key: Why
+     Value: ELBDemo 
+
+  ELBPublic2:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: String
+      CidrBlock: !Ref Public2
+     Tags: 
+     - Key: Why
+     Value: ELBDemo 
+
+  NLB:
+    Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+    Properties:
+      SecurityGroups:
+        - !Ref WebSG
+      Subnets:
+        - String
+      Tags:
+        - Key: Why
+          Value: ELBDemo
+      Type: network
+  ALB:
+    Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+    Properties:
+      SecurityGroups:
+        - !Ref WebSG
+      Subnets:
+        - String
+      Tags:
+        - Key: Why
+          Value: ELBDemo
+      Type: application
+      
+  CLB:  
+    Type: "AWS::ElasticLoadBalancing::LoadBalancer"
+    Properties:
+      CrossZone: true
+      HealthCheck:
+        HealthyThreshold: 2
+        Interval: 10
+        Target: HTTP:80
+        Timeout: 5
+        UnhealthyThreshold: 2
+      Instances:
+        - String
+      Listeners:
+        - InstancePort: 80
+          InstanceProtocol: HTTP
+          LoadBalancerPort: 80
+          Protocol: HTTP
+      Policies:
+        - ElasticLoadBalancing Policy
+      Scheme: internet-facing,
+      SecurityGroups:
+        - !Ref WebSG
+      Subnets:
+        - String
+      Tags:
+        - Key: Why
+          Value: ELBDemo
+  
+  # WebSG:
+  #   Type: AWS::EC2::SecurityGroup
+
+  # RouteTable
+  #
