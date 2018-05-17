@@ -104,6 +104,8 @@ Resources:
   CLB:
     Type:                   "AWS::ElasticLoadBalancing::LoadBalancer"
     Properties:
+      AvailabilityZones:
+        Fn::GetAZs:         'AWS::Region'
       CrossZone:            true
       HealthCheck:
         HealthyThreshold:   2
@@ -112,19 +114,15 @@ Resources:
         Timeout:            5
         UnhealthyThreshold: 2
       Instances:
-        - String
+        - !Ref TargetInstance
       Listeners:
         - InstancePort:     80
           InstanceProtocol: HTTP
           LoadBalancerPort: 80
           Protocol:         HTTP
-      Policies:
-        - ElasticLoadBalancing Policy
       Scheme:               internet-facing,
       SecurityGroups:
         - !Ref WebSG
-      Subnets:
-        - String
       Tags:
         - Key:              Why
           Value:            ELBDemo
@@ -162,3 +160,21 @@ Resources:
         - Key:              Why
           Value:            ELBDemo
       VpcId:                !Ref ELBVPC
+
+  TargetInstance:
+    Type:                   AWS::EC2::Instance
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs:     !Ref 'AWS::Region'
+      ImageId:              String     # required
+
+      InstanceType:         t2.micro     # optional
+      SecurityGroupIds:     # optional, list of String
+        - !Ref WebSG
+      SubnetId:             !Ref Private1     # optional
+      Tags:                 # optional, list of Tag
+        - Key:              Why
+          Value:            ELBDemo
+      UserData:             String     # optional
