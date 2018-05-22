@@ -1,3 +1,9 @@
+# To-do list:
+# - fix the errors on the subnets
+# - complete the configuration of the ELBs
+# - image-id for the ec2-instance
+# -
+
 AWSTemplateFormatVersion:   "2010-09-09"
 
 Parameters:
@@ -80,8 +86,7 @@ Resources:
   NLB:
     Type:                   "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
-      SecurityGroups:
-        - !Ref WebSG
+      LoadBalancerName:     NLB
       Subnets:
         - String
       Tags:
