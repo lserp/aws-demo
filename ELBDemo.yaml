@@ -115,7 +115,7 @@ Resources:
   NLB:
     Type:                   "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
-      LoadBalancerName:     NLB
+      Name:                 NLB
       Subnets:
         - String
       Tags:
