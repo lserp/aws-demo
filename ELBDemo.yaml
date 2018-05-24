@@ -1,8 +1,37 @@
-# To-do list:
-# - fix the errors on the subnets
-# - complete the configuration of the ELBs
-# - image-id for the ec2-instance
-# -
+# aws cloudformation describe-stack-events --stack-name ELBDemo --query 'StackEvents[?ResourceStatus==`CREATE_FAILED`]|[].{Type:ResourceType,Reason:ResourceStatusReason}'
+# [
+#     {
+#         "Reason":         "Security groups are not supported for load balancers with type 'network'",
+#         "Type":           "AWS::ElasticLoadBalancingV2::LoadBalancer"
+#     },
+#     {
+#         "Reason":         "Resource creation cancelled",
+#         "Type":           "AWS::EC2::Subnet"
+#     },
+#     {
+#         "Reason":         "Resource creation cancelled",
+#         "Type":           "AWS::ElasticLoadBalancingV2::LoadBalancer"
+#     },
+#     {
+#         "Reason":         "Resource creation cancelled",
+#         "Type":           "AWS::EC2::Subnet"
+#     },
+#     {
+#         "Reason":         "Resource creation cancelled",
+#         "Type":           "AWS::EC2::Subnet"
+#     },
+#     {
+#         "Reason":         "Resource creation cancelled",
+#         "Type":           "AWS::EC2::Subnet"
+#     },
+#     {
+#         "Reason":         "The subnet ID '10.0.20.0/24' does not exist",
+#         "Type":           "AWS::EC2::SubnetRouteTableAssociation"
+#     },
+#     {
+#         "Reason":         "The subnet ID '10.0.10.0/24' does not exist",
+#         "Type":           "AWS::EC2::SubnetRouteTableAssociation"
+#     }
 
 AWSTemplateFormatVersion:   "2010-09-09"
 
@@ -68,7 +97,7 @@ Resources:
       CidrBlock:            !Ref Public1
       Tags:
       - Key:                Why
-        Value:              ELBDemo
+        Value:              ELBDemoTest
       VpcId:                !Ref ELBVPC
 
   ELBPublic2:
